@@ -1,13 +1,7 @@
--- =============================================
--- Index Definitions for COS Database
--- Created: 2026-06-04
--- Purpose: Performance optimization for frequent queries
--- =============================================
-
 USE COS;
 
 -- Index #1: Fast patient lookup by IC/Passport number
--- (Clinical staff search patients by IC more often than PatientID)
+-- (Clinical staff search patients by IC)
 CREATE INDEX idxPatientIC ON PATIENT (IC_Passport);
 
 -- Index #2: Optimize date range queries and reports
@@ -23,5 +17,4 @@ CREATE INDEX idxMedRecordVersion ON MEDICAL_RECORD (VisitID, Version);
 CREATE INDEX idxOrderStatus ON MEDICAL_ORDER (Status);
 
 -- Index #5: Quickly find pending referrals
--- (Specialists need fast access to 'Pending' referrals)
 CREATE INDEX idxReferralStatus ON REFERRAL (Status);
